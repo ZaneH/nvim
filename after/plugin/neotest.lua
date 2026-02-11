@@ -1,10 +1,4 @@
-require("neotest").setup({
-	adapters = {
-		require("neotest-foundry")({
-			foundryCommand = "forge test -vvvv",
-		}),
-	},
-})
+require("neotest").setup({})
 
 vim.keymap.set("n", "<leader>t", "<nop>", { desc = "test" })
 vim.keymap.set("n", "<leader>tt", function()
