@@ -1,2 +1,2 @@
-vim.keymap.set("n", "<leader>l", "<nop>", { desc = "lazygit" })
-vim.keymap.set("n", "<leader>lg", vim.cmd.LazyGit, { desc = "Open LazyGit" })
+vim.keymap.set("n", "<leader>g", "<nop>", { desc = "git" })
+vim.keymap.set("n", "<leader>gg", vim.cmd.LazyGit, { desc = "Open LazyGit" })

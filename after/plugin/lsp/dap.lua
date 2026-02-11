@@ -15,14 +15,16 @@ end
 
 local codelldb_path = os.getenv("CODELLDB")
 
-dap.adapters.codelldb = {
-	type = "server",
-	port = "${port}",
-	executable = {
-		command = codelldb_path,
-		args = { "--port", "${port}" },
-	},
-}
+if codelldb_path and codelldb_path ~= "" then
+	dap.adapters.codelldb = {
+		type = "server",
+		port = "${port}",
+		executable = {
+			command = codelldb_path,
+			args = { "--port", "${port}" },
+		},
+	}
+end
 
 dap.configurations.cpp = {
 	{
@@ -36,3 +38,15 @@ dap.configurations.cpp = {
 		stopOnEntry = false,
 	},
 }
+
+vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { desc = "Toggle breakpoint" })
+vim.keymap.set("n", "<leader>dB", function()
+	dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
+end, { desc = "Conditional breakpoint" })
+vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Continue/Start" })
+vim.keymap.set("n", "<leader>dn", dap.step_over, { desc = "Step over" })
+vim.keymap.set("n", "<leader>di", dap.step_into, { desc = "Step into" })
+vim.keymap.set("n", "<leader>do", dap.step_out, { desc = "Step out" })
+vim.keymap.set("n", "<leader>dr", dap.repl.open, { desc = "Open REPL" })
+vim.keymap.set("n", "<leader>du", dapui.toggle, { desc = "Toggle DAP UI" })
+vim.keymap.set("n", "<leader>de", dapui.eval, { desc = "Eval under cursor" })

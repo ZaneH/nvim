@@ -2,15 +2,17 @@
 -- Autocompletion setup
 ---
 local cmp = require("cmp")
-local cmp_action = require("lsp-zero").cmp_action()
+local luasnip = require("luasnip")
 require("cmp-npm").setup({})
+
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 cmp.setup({
 	enabled = function()
 		-- disable completion in comments
 		local context = require("cmp.config.context")
 
-		buftype = vim.api.nvim_buf_get_option(0, "buftype")
+		local buftype = vim.api.nvim_buf_get_option(0, "buftype")
 		if buftype == "prompt" then
 			return false
 		end
@@ -39,10 +41,26 @@ cmp.setup({
 		["<C-b>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete(),
-		["<Ctrl-e>"] = cmp.mapping.abort(),
+		["<C-e>"] = cmp.mapping.abort(),
 		["<CR>"] = cmp.mapping.confirm({ select = false }),
-		["<Tab>"] = cmp_action.luasnip_supertab(),
-		["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
+		["<Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item(cmp_select)
+			elseif luasnip.expand_or_locally_jumpable() then
+				luasnip.expand_or_jump()
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+		["<S-Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item(cmp_select)
+			elseif luasnip.locally_jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
 	}),
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
@@ -62,7 +80,7 @@ cmp.setup({
 vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true, fg = "#808080" })
 -- blue
 vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { bg = "NONE", fg = "#569CD6" })
-vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { link = "CmpIntemAbbrMatch" })
+vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { link = "CmpItemAbbrMatch" })
 -- light blue
 vim.api.nvim_set_hl(0, "CmpItemKindVariable", { bg = "NONE", fg = "#9CDCFE" })
 vim.api.nvim_set_hl(0, "CmpItemKindInterface", { link = "CmpItemKindVariable" })
