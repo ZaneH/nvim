@@ -4,14 +4,6 @@ return require("packer").startup(function(use)
 	-- Packer can manage itself
 	use({ "wbthomason/packer.nvim" })
 
-	use({ "williamboman/mason.nvim" })
-
-	-- Automatically install formatters, linters and daps
-	use({ "WhoIsSethDaniel/mason-tool-installer.nvim", requires = "williamboman/mason-lspconfig.nvim" })
-	use({ "jay-babu/mason-null-ls.nvim", requires = "williamboman/mason-lspconfig.nvim" })
-	use({ "jay-babu/mason-nvim-dap.nvim", requires = "williamboman/mason-lspconfig.nvim" })
-	use({ "williamboman/mason-lspconfig.nvim", requires = "williamboman/mason-lspconfig.nvim" })
-
 	-- Cosmetic
 	use({ "folke/tokyonight.nvim" })
 	-- use({ "projekt0n/github-nvim-theme" })
@@ -46,17 +38,12 @@ return require("packer").startup(function(use)
 	use({ "hrsh7th/cmp-nvim-lsp" })
 	use({ "David-Kunz/cmp-npm", requires = { "nvim-lua/plenary.nvim" } })
 
-	-- Unsure if this is utilized...
-	use({ "sohkai/syntastic-local-solhint" })
-
 	use({
 		"nvim-neotest/neotest",
 		requires = {
 			"nvim-neotest/nvim-nio",
 			"nvim-lua/plenary.nvim",
-			"antoinemadec/FixCursorHold.nvim",
 			"nvim-treesitter/nvim-treesitter",
-			"llllvvuu/neotest-foundry",
 		},
 	})
 
@@ -70,7 +57,7 @@ return require("packer").startup(function(use)
 
 	use({ "mfussenegger/nvim-dap" })
 
-	use({ "ggandor/leap.nvim" })
+	use({ "https://codeberg.org/andyg/leap.nvim" })
 
 	use({ "folke/which-key.nvim" })
 
@@ -120,17 +107,15 @@ return require("packer").startup(function(use)
 
 	use({ "kristijanhusak/vim-dadbod-ui", requires = { "tpope/vim-dadbod", "kristijanhusak/vim-dadbod-completion" } })
 
-  use({
-    "nvim-orgmode/orgmode",
-    ft = { "org" },
-    config = function()
-      require("orgmode").setup({
-        org_agenda_files = { "~/repos/org/**/*" },
-        org_default_notes_file = "~/repos/org/notes.org",
-      })
-
-      -- Experimental LSP support (Neovim 0.11+)
-      vim.lsp.enable("org")
-    end,
-  })
+	use({
+		"nvim-orgmode/orgmode",
+		ft = { "org" },
+		config = function()
+			require("orgmode").setup({
+				org_agenda_files = { "~/repos/org/**/*" },
+				org_default_notes_file = "~/repos/org/notes.org",
+			})
+			vim.lsp.enable("org")
+		end,
+	})
 end)
