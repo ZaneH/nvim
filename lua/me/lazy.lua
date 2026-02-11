@@ -17,7 +17,8 @@ require("lazy").setup({
 	{ "nvim-lua/plenary.nvim" },
 
 	-- Cosmetic
-	{ "folke/tokyonight.nvim" },
+	-- { "folke/tokyonight.nvim" },
+	{ "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = ... },
 
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	{ "typicode/bg.nvim" },
