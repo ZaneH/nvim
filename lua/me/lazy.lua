@@ -58,7 +58,7 @@ require("lazy").setup({
 	{ "numToStr/Comment.nvim" },
 	{ "folke/zen-mode.nvim" },
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-	{ "echasnovski/mini.nvim" },
+	{ "nvim-mini/mini.nvim" },
 	{ "kristijanhusak/vim-dadbod-ui", dependencies = { "tpope/vim-dadbod", "kristijanhusak/vim-dadbod-completion" } },
 	{
 		"iamcco/markdown-preview.nvim",
@@ -89,7 +89,6 @@ require("lazy").setup({
 
 	-- Git
 	{ "lewis6991/gitsigns.nvim" },
-	{ "kdheepak/lazygit.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 	{ "rmagatti/auto-session", dependencies = { "nvim-telescope/telescope.nvim" } },
 	{
 		"warpaint9299/nvim-devdocs",
@@ -97,6 +96,22 @@ require("lazy").setup({
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
 			"nvim-treesitter/nvim-treesitter",
+		},
+	},
+	{
+		"NeogitOrg/neogit",
+		lazy = true,
+		dependencies = {
+			"nvim-lua/plenary.nvim", -- required
+			"sindrets/diffview.nvim", -- optional - Diff integration
+
+			-- Only one of these is needed.
+			"nvim-telescope/telescope.nvim", -- optional
+			"nvim-mini/mini.pick", -- optional
+		},
+		cmd = "Neogit",
+		keys = {
+			{ "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" },
 		},
 	},
 
