@@ -18,6 +18,8 @@ require("lazy").setup({
 
 	-- Cosmetic
 	{ "folke/tokyonight.nvim" },
+
+	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	{ "typicode/bg.nvim" },
 	{ "RRethy/vim-illuminate" },
 	{ "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
@@ -25,12 +27,6 @@ require("lazy").setup({
 	{ "stevearc/dressing.nvim" },
 	{ "nvim-lualine/lualine.nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },
 	{ "onsails/lspkind.nvim" },
-
-	-- Telescope
-	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
-	{ "debugloop/telescope-undo.nvim", dependencies = { "nvim-telescope/telescope.nvim" } },
-
-	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 
 	-- Completion
 	{ "neovim/nvim-lspconfig" },
@@ -41,20 +37,28 @@ require("lazy").setup({
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "David-Kunz/cmp-npm", dependencies = { "nvim-lua/plenary.nvim" } },
 
+	-- Testing & Debugging
 	{
 		"nvim-neotest/neotest",
 		dependencies = { "nvim-neotest/nvim-nio", "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
 	},
-
-	{ "kdheepak/lazygit.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
-
 	{ "mfussenegger/nvim-dap" },
 	{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
+	{ "folke/trouble.nvim" },
 
-	{ "https://codeberg.org/andyg/leap.nvim" },
+	-- Utility
 	{ "folke/which-key.nvim" },
+	{ "windwp/nvim-autopairs" },
+	{ "stevearc/oil.nvim" },
+	{ "smjonas/inc-rename.nvim" },
 	{ "stevearc/conform.nvim" },
-
+	{ "akinsho/toggleterm.nvim", version = "*", config = true },
+	{ "kylechui/nvim-surround" },
+	{ "numToStr/Comment.nvim" },
+	{ "folke/zen-mode.nvim" },
+	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+	{ "echasnovski/mini.nvim" },
+	{ "kristijanhusak/vim-dadbod-ui", dependencies = { "tpope/vim-dadbod", "kristijanhusak/vim-dadbod-completion" } },
 	{
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -64,14 +68,27 @@ require("lazy").setup({
 			vim.g.mkdp_filetypes = { "markdown" }
 		end,
 	},
+	{
+		"nvim-orgmode/orgmode",
+		ft = { "org" },
+		config = function()
+			require("orgmode").setup({
+				org_agenda_files = { "~/repos/org/**/*" },
+				org_default_notes_file = "~/repos/org/notes.org",
+			})
+			vim.lsp.enable("org")
+		end,
+	},
 
-	{ "folke/trouble.nvim" },
-	{ "ray-x/go.nvim" },
+	-- Navigation
 	{ "ThePrimeagen/harpoon", branch = "harpoon2", dependencies = { "nvim-lua/plenary.nvim" } },
-	{ "folke/zen-mode.nvim" },
+	{ "https://codeberg.org/andyg/leap.nvim" },
+	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+	{ "debugloop/telescope-undo.nvim", dependencies = { "nvim-telescope/telescope.nvim" } },
+
+	-- Git
 	{ "lewis6991/gitsigns.nvim" },
-	{ "kylechui/nvim-surround" },
-	{ "numToStr/Comment.nvim" },
+	{ "kdheepak/lazygit.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 	{ "rmagatti/auto-session", dependencies = { "nvim-telescope/telescope.nvim" } },
 	{
 		"warpaint9299/nvim-devdocs",
@@ -86,24 +103,6 @@ require("lazy").setup({
 	{ "L3MON4D3/LuaSnip", build = "make install_jsregexp", dependencies = { "rafamadriz/friendly-snippets" } },
 	{ "saadparwaiz1/cmp_luasnip" },
 
-	{ "stevearc/oil.nvim" },
-	{ "windwp/nvim-autopairs" },
-	{ "epwalsh/obsidian.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
-	{ "smjonas/inc-rename.nvim" },
-	{ "echasnovski/mini.nvim" },
-	{ "kristijanhusak/vim-dadbod-ui", dependencies = { "tpope/vim-dadbod", "kristijanhusak/vim-dadbod-completion" } },
-
-	{
-		"nvim-orgmode/orgmode",
-		ft = { "org" },
-		config = function()
-			require("orgmode").setup({
-				org_agenda_files = { "~/repos/org/**/*" },
-				org_default_notes_file = "~/repos/org/notes.org",
-			})
-			vim.lsp.enable("org")
-		end,
-	},
-
-	{ "akinsho/toggleterm.nvim", version = "*", config = true },
+	-- Language Specific
+	{ "ray-x/go.nvim" },
 })
