@@ -18,4 +18,21 @@ require("noice").setup({
 	popupmenu = {
 		enabled = false,
 	},
+	routes = {
+		-- hide nvim-devdocs debug messages
+		{
+			filter = {
+				event = "notify",
+				find = "Plugin initialized",
+			},
+			opts = { skip = true },
+		},
+		{
+			filter = {
+				event = "notify",
+				find = "Installing required docs",
+			},
+			opts = { skip = true },
+		},
+	},
 })
