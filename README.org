@@ -1,0 +1,7 @@
+* nvim config
+
+  #+begin_src sh
+  $ git clone https://github.com/ZaneH/nvim ~/.config/nvim
+  #+end_src
+
+  - Run =:PackerSync=

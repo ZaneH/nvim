@@ -119,4 +119,18 @@ return require("packer").startup(function(use)
 	use({ "echasnovski/mini.nvim" })
 
 	use({ "kristijanhusak/vim-dadbod-ui", requires = { "tpope/vim-dadbod", "kristijanhusak/vim-dadbod-completion" } })
+
+  use({
+    "nvim-orgmode/orgmode",
+    ft = { "org" },
+    config = function()
+      require("orgmode").setup({
+        org_agenda_files = { "~/repos/org/**/*" },
+        org_default_notes_file = "~/repos/org/notes.org",
+      })
+
+      -- Experimental LSP support (Neovim 0.11+)
+      vim.lsp.enable("org")
+    end,
+  })
 end)
