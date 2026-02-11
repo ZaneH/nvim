@@ -1,7 +1,25 @@
 local dap = require("dap")
 local dapui = require("dapui")
 
-dapui.setup()
+dapui.setup({
+	layouts = {
+		{
+			elements = {
+				{ id = "scopes", size = 0.33 },
+				{ id = "breakpoints", size = 0.17 },
+				{ id = "stacks", size = 0.25 },
+				{ id = "watches", size = 0.25 },
+			},
+			position = "right",
+			size = 50,
+		},
+		{
+			elements = { "repl", "console" },
+			position = "bottom",
+			size = 10,
+		},
+	},
+})
 
 dap.listeners.after.event_initialized["dapui"] = function()
 	dapui.open()
@@ -49,4 +67,6 @@ vim.keymap.set("n", "<leader>di", dap.step_into, { desc = "Step into" })
 vim.keymap.set("n", "<leader>do", dap.step_out, { desc = "Step out" })
 vim.keymap.set("n", "<leader>dr", dap.repl.open, { desc = "Open REPL" })
 vim.keymap.set("n", "<leader>du", dapui.toggle, { desc = "Toggle DAP UI" })
-vim.keymap.set("n", "<leader>de", dapui.eval, { desc = "Eval under cursor" })
+vim.keymap.set("n", "<leader>de", function()
+	dapui.eval(vim.fn.expand("<cWORD>"), { enter = true })
+end, { desc = "Eval under cursor" })
