@@ -66,6 +66,10 @@ require("lazy").setup({
 	{ "ray-x/go.nvim" },
 	{ "ThePrimeagen/harpoon", branch = "harpoon2", dependencies = { "nvim-lua/plenary.nvim" } },
 	{ "folke/zen-mode.nvim" },
+	{ "lewis6991/gitsigns.nvim" },
+	{ "kylechui/nvim-surround" },
+	{ "numToStr/Comment.nvim" },
+	{ "rmagatti/auto-session", dependencies = { "nvim-telescope/telescope.nvim" } },
 
 	-- Snippets
 	{ "L3MON4D3/LuaSnip", build = "make install_jsregexp", dependencies = { "rafamadriz/friendly-snippets" } },
