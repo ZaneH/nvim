@@ -4,4 +4,4 @@
   $ git clone https://github.com/ZaneH/nvim ~/.config/nvim
   #+end_src
 
-  - Run =:PackerSync=
+  - Run =:Lazy sync=

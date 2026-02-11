@@ -23,6 +23,11 @@ vim.keymap.set("n", "<leader>wj", "<C-w>j", { desc = "Window down" })
 vim.keymap.set("n", "<leader>wk", "<C-w>k", { desc = "Window up" })
 vim.keymap.set("n", "<leader>wl", "<C-w>l", { desc = "Window right" })
 
+-- File management
+vim.keymap.set("n", "<leader>f", "<nop>", { desc = "file" })
+vim.keymap.set("n", "<leader>fs", ":w<cr>", { desc = "Save file" })
+vim.keymap.set("n", "<leader>fS", ":wa<cr>", { desc = "Save all" })
+
 -- Show diagnostics
 vim.keymap.set("n", "[d", function()
 	vim.diagnostic.goto_prev()
