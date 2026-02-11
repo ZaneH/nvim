@@ -70,6 +70,14 @@ require("lazy").setup({
 	{ "kylechui/nvim-surround" },
 	{ "numToStr/Comment.nvim" },
 	{ "rmagatti/auto-session", dependencies = { "nvim-telescope/telescope.nvim" } },
+	{
+		"warpaint9299/nvim-devdocs",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+	},
 
 	-- Snippets
 	{ "L3MON4D3/LuaSnip", build = "make install_jsregexp", dependencies = { "rafamadriz/friendly-snippets" } },

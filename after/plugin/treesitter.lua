@@ -8,6 +8,7 @@ require("nvim-treesitter.config").setup({
 		"query",
 		"markdown",
 		"markdown_inline",
+		"html",
 		"javascript",
 		"typescript",
 		"rust",
