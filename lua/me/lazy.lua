@@ -41,7 +41,10 @@ require("lazy").setup({
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "David-Kunz/cmp-npm", dependencies = { "nvim-lua/plenary.nvim" } },
 
-	{ "nvim-neotest/neotest", dependencies = { "nvim-neotest/nvim-nio", "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" } },
+	{
+		"nvim-neotest/neotest",
+		dependencies = { "nvim-neotest/nvim-nio", "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
+	},
 
 	{ "kdheepak/lazygit.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 
@@ -101,4 +104,6 @@ require("lazy").setup({
 			vim.lsp.enable("org")
 		end,
 	},
+
+	{ "akinsho/toggleterm.nvim", version = "*", config = true },
 })
