@@ -3,8 +3,11 @@ local opts = { noremap = true, silent = true }
 -- Use "jk" in insert mode to enter Normal mode
 vim.keymap.set("i", "jk", "<Esc>")
 
--- Save with <Space>w
-vim.keymap.set("n", "<leader>w", ":w<cr>", { desc = "Write file" })
+-- Quickly shift lines
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==")
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==")
+vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
 
 -- Jump vim panels with hjkl
 vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
