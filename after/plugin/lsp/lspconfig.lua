@@ -6,23 +6,34 @@
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("UserLspKeymaps", { clear = true }),
 	callback = function(ev)
-		local opts = { buffer = ev.buf }
+		local map = function(mode, lhs, rhs, desc)
+			vim.keymap.set(mode, lhs, rhs, { buffer = ev.buf, desc = desc })
+		end
 
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-		vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions, opts)
-		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-		vim.keymap.set("n", "go", vim.lsp.buf.type_definition, opts)
-		vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references, opts)
-		vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, opts)
-		vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, opts)
-		vim.keymap.set({ "n", "x" }, "<leader>la", vim.lsp.buf.code_action, opts)
-		vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, opts)
-		vim.keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, opts)
-		vim.keymap.set({ "n", "x" }, "<F3>", function()
+		map("n", "K", vim.lsp.buf.hover, "LSP Hover")
+		map("n", "gd", require("telescope.builtin").lsp_definitions, "LSP Goto Definition")
+		map("n", "gD", vim.lsp.buf.declaration, "LSP Goto Declaration")
+		map("n", "gi", vim.lsp.buf.implementation, "LSP Goto Implementation")
+		map("n", "go", vim.lsp.buf.type_definition, "LSP Goto Type Definition")
+		map("n", "gr", require("telescope.builtin").lsp_references, "LSP References")
+		map("n", "gs", vim.lsp.buf.signature_help, "LSP Signature Help")
+		map("n", "<leader>lr", vim.lsp.buf.rename, "LSP Rename")
+		map({ "n", "x" }, "<leader>la", vim.lsp.buf.code_action, "LSP Code Action")
+		map("n", "<leader>ld", vim.diagnostic.open_float, "LSP Line Diagnostics")
+		map("n", "<leader>lq", vim.diagnostic.setloclist, "LSP Diagnostics to Loclist")
+		map({ "n", "x" }, "<F3>", function()
 			vim.lsp.buf.format({ async = true })
-		end, opts)
-		vim.keymap.set("n", "<F4>", vim.lsp.buf.code_action, opts)
+		end, "LSP Format")
+		map("n", "<F4>", vim.lsp.buf.code_action, "LSP Code Action")
+		map("n", "<leader>lh", function()
+			local ok, enabled = pcall(vim.lsp.inlay_hint.is_enabled, { bufnr = ev.buf })
+			if not ok then
+				ok, enabled = pcall(vim.lsp.inlay_hint.is_enabled, ev.buf)
+			end
+			if ok then
+				vim.lsp.inlay_hint.enable(not enabled, { bufnr = ev.buf })
+			end
+		end, "LSP Toggle Inlay Hints")
 	end,
 })
 
