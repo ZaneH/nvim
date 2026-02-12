@@ -91,6 +91,11 @@ require("lazy").setup({
 			vim.lsp.enable("org")
 		end,
 	},
+	{
+		"Aasim-A/scrollEOF.nvim",
+		event = { "CursorMoved", "WinScrolled" },
+		opts = {},
+	},
 
 	-- Navigation
 	{ "ThePrimeagen/harpoon", branch = "harpoon2", dependencies = { "nvim-lua/plenary.nvim" } },
