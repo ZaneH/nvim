@@ -61,7 +61,11 @@ dap.configurations.cpp = {
 		type = "codelldb",
 		request = "launch",
 		program = function()
-			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/", "file")
+			if last_program then
+				return last_program
+			end
+			last_program = vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/", "file")
+			return last_program
 		end,
 		cwd = "${workspaceFolder}",
 		stopOnEntry = false,
@@ -78,7 +82,11 @@ dap.configurations.cpp = {
 		type = "cppdbg",
 		request = "launch",
 		program = function()
-			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/", "file")
+			if last_program then
+				return last_program
+			end
+			last_program = vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/", "file")
+			return last_program
 		end,
 		cwd = "${workspaceFolder}",
 		stopAtEntry = true,
