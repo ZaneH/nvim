@@ -9,6 +9,9 @@ vim.keymap.set("n", "<A-k>", ":m .-2<CR>==")
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
 
+-- Delete word in front with A-d
+vim.keymap.set("i", "<A-d>", "<C-o>dw", { noremap = true })
+
 -- Jump vim panels with hjkl
 vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
 vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
