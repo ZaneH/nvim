@@ -31,7 +31,10 @@ dap.listeners.before.event_exited["dapui"] = function()
 	dapui.close()
 end
 
+-- Debugging C++ code expects env variables for CODELLDB and OPENDEBUGAD7 to be set
+
 local codelldb_path = os.getenv("CODELLDB")
+local opendebugad7_path = os.getenv("OPENDEBUGAD7")
 
 if codelldb_path and codelldb_path ~= "" then
 	dap.adapters.codelldb = {
@@ -44,9 +47,17 @@ if codelldb_path and codelldb_path ~= "" then
 	}
 end
 
+if opendebugad7_path and opendebugad7_path ~= "" then
+	dap.adapters.cppdbg = {
+		id = "cppdbg",
+		type = "executable",
+		command = opendebugad7_path,
+	}
+end
+
 dap.configurations.cpp = {
 	{
-		name = "Launch",
+		name = "CodeLLDB",
 		type = "codelldb",
 		request = "launch",
 		program = function()
@@ -54,6 +65,30 @@ dap.configurations.cpp = {
 		end,
 		cwd = "${workspaceFolder}",
 		stopOnEntry = false,
+		setupCommands = {
+			{
+				text = "-enable-pretty-printing",
+				description = "enable pretty printing",
+				ignoreFailures = false,
+			},
+		},
+	},
+	{
+		name = "OpenDebugAD7",
+		type = "cppdbg",
+		request = "launch",
+		program = function()
+			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/", "file")
+		end,
+		cwd = "${workspaceFolder}",
+		stopAtEntry = true,
+		setupCommands = {
+			{
+				text = "-enable-pretty-printing",
+				description = "enable pretty printing",
+				ignoreFailures = false,
+			},
+		},
 	},
 }
 
