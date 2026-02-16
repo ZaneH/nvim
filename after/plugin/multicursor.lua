@@ -34,10 +34,17 @@ map({ "n", "x" }, "<leader>mS", function()
 	mc.matchSkipCursor(-1)
 end, "Skip previous match")
 map({ "n", "x" }, "<leader>mA", mc.matchAllAddCursors, "Add all matches")
+map({ "n", "x" }, "<leader>mi", mc.addCursorOperator, "Add cursors by motion/selection")
 
 -- Block-style multi-editing from visual selections.
-map("x", "<leader>mi", mc.insertVisual, "Insert at each cursor")
+map("x", "<leader>mI", mc.insertVisual, "Insert at each cursor")
 map("x", "<leader>ma", mc.appendVisual, "Append at each cursor")
+map("n", "<leader>mI", function()
+	vim.notify("Visual mode only: select text (v/V/<C-v>) then press <leader>mI")
+end, "Insert at each cursor (visual)")
+map("n", "<leader>ma", function()
+	vim.notify("Visual mode only: select text (v/V/<C-v>) then press <leader>ma")
+end, "Append at each cursor (visual)")
 
 -- Add and remove cursors with control + left click.
 map("n", "<c-leftmouse>", mc.handleMouse, "Toggle cursor with mouse")
