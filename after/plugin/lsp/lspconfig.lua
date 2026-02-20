@@ -49,6 +49,7 @@ vim.lsp.config("cssls", { capabilities = capabilities })
 vim.lsp.config("bashls", { capabilities = capabilities })
 vim.lsp.config("ocamllsp", { capabilities = capabilities })
 vim.lsp.config("clangd", { capabilities = capabilities })
+vim.lsp.config("yamlls", { capabilities = capabilities })
 
 vim.lsp.config("sqls", {
 	capabilities = capabilities,
@@ -69,4 +70,5 @@ vim.lsp.enable({
 	"bashls",
 	"ocamllsp",
 	"clangd",
+	"yamlls",
 })
