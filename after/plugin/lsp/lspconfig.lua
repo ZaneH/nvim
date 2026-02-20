@@ -50,7 +50,6 @@ vim.lsp.config("bashls", { capabilities = capabilities })
 vim.lsp.config("ocamllsp", { capabilities = capabilities })
 vim.lsp.config("clangd", { capabilities = capabilities })
 vim.lsp.config("yamlls", { capabilities = capabilities })
-
 vim.lsp.config("sqls", {
 	capabilities = capabilities,
 	on_attach = function(client)
@@ -58,6 +57,27 @@ vim.lsp.config("sqls", {
 		client.server_capabilities.documentFormattingProvider = false
 		client.server_capabilities.documentRangeFormattingProvider = false
 	end,
+})
+vim.lsp.config("nixd", {
+	cmd = { "nixd" },
+	settings = {
+		nixd = {
+			nixpkgs = {
+				expr = "import <nixpkgs> { }",
+			},
+			formatting = {
+				command = { "nixfmt" },
+			},
+			options = {
+				nixos = {
+					expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.k-on.options',
+				},
+				home_manager = {
+					expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."ruixi@k-on".options',
+				},
+			},
+		},
+	},
 })
 
 -- 4) Enable servers
@@ -71,4 +91,5 @@ vim.lsp.enable({
 	"ocamllsp",
 	"clangd",
 	"yamlls",
+	"nixd",
 })
