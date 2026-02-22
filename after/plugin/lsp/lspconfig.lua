@@ -79,6 +79,7 @@ vim.lsp.config("nixd", {
 		},
 	},
 })
+vim.lsp.config("cmake", { capabilities = capabilities })
 
 -- 4) Enable servers
 vim.lsp.enable({
@@ -92,4 +93,5 @@ vim.lsp.enable({
 	"clangd",
 	"yamlls",
 	"nixd",
+	"cmake",
 })
