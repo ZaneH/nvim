@@ -73,6 +73,14 @@ require("lazy").setup({
 	{ "kristijanhusak/vim-dadbod-ui", dependencies = { "tpope/vim-dadbod", "kristijanhusak/vim-dadbod-completion" } },
 	{ "jake-stewart/multicursor.nvim", branch = "1.0" },
 	{
+		"folke/snacks.nvim",
+		opts = {
+			image = {
+				enabled = true,
+			},
+		},
+	},
+	{
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 		ft = { "markdown" },
