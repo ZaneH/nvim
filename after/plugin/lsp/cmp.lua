@@ -45,7 +45,14 @@ cmp.setup({
 		["<CR>"] = cmp.mapping.confirm({ select = false }),
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
-				cmp.select_next_item(cmp_select)
+				local confirmed = cmp.confirm({ select = true })
+				if confirmed then
+					vim.schedule(function()
+						if luasnip.locally_jumpable(1) then
+							luasnip.jump(1)
+						end
+					end)
+				end
 			elseif luasnip.expand_or_locally_jumpable() then
 				luasnip.expand_or_jump()
 			else
