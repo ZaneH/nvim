@@ -146,4 +146,16 @@ require("lazy").setup({
 
 	-- Language Specific
 	{ "ray-x/go.nvim" },
+
+	-- Misc
+	{
+		"kawre/leetcode.nvim",
+		lazy = leet_arg ~= vim.fn.argv()[1],
+		lang = "cpp",
+		build = ":TSUpdate html",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		opts = {},
+	},
 })
