@@ -7,6 +7,8 @@ vim.keymap.set("n", "<leader>pF", builtin.git_files, { desc = "Telescope git fil
 vim.keymap.set("n", "<leader><leader>", builtin.find_files, { desc = "Telescope find files" })
 vim.keymap.set("n", "<leader>pg", builtin.live_grep, { desc = "Telescope live grep" })
 vim.keymap.set("n", "<leader>pb", builtin.buffers, { desc = "Telescope buffers" })
+vim.keymap.set("n", "<leader>ps", builtin.lsp_document_symbols, { desc = "Telescope symbols" })
+vim.keymap.set("n", "<leader>pS", builtin.lsp_workspace_symbols, { desc = "Telescope workspace symbols" })
 vim.keymap.set("n", "<leader>ss", builtin.current_buffer_fuzzy_find, { desc = "Search buffer" })
 vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "Search project" })
 vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "Search buffers" })
@@ -16,3 +18,8 @@ vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "Search diagnost
 vim.keymap.set("n", "<leader>u", function()
 	vim.cmd([[Telescope undo]])
 end, { desc = "Undo tree" })
+vim.keymap.set("n", "z=", builtin.spell_suggest, { desc = "Spell suggest" })
+
+-- Help
+vim.keymap.set("n", "<leader>hk", builtin.keymaps, { desc = "Telescope keymaps" })
+vim.keymap.set("n", "<leader>hr", builtin.registers, { desc = "Telescope registers" })

@@ -1,6 +1,8 @@
 local toggleterm = require("toggleterm")
 
-toggleterm.setup()
+toggleterm.setup({
+	start_in_insert = false,
+})
 
 vim.keymap.set("n", "<leader>ot", function()
 	toggleterm.toggle()

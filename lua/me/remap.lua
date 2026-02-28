@@ -3,7 +3,7 @@ local opts = { noremap = true, silent = true }
 -- Use "jk" in insert mode to enter Normal mode
 vim.keymap.set("i", "jk", "<Esc>")
 
--- Quickly shift lines
+-- Quickly shift line(s)
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==")
 vim.keymap.set("n", "<A-k>", ":m .-2<CR>==")
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
@@ -19,14 +19,12 @@ vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
 vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
 
 -- Window management
-vim.keymap.set("n", "<leader>w", "<nop>", { desc = "window" })
 vim.keymap.set("n", "<leader>ws", "<C-w>s", { desc = "Split below" })
 vim.keymap.set("n", "<leader>wv", "<C-w>v", { desc = "Split right" })
 vim.keymap.set("n", "<leader>wd", "<C-w>c", { desc = "Close window" })
 vim.keymap.set("n", "<leader>w=", "<C-w>=", { desc = "Balance windows" })
 
 -- File management
-vim.keymap.set("n", "<leader>f", "<nop>", { desc = "file" })
 vim.keymap.set("n", "<leader>fs", ":w<cr>", { desc = "Save file" })
 vim.keymap.set("n", "<leader>fS", ":wa<cr>", { desc = "Save all" })
 
@@ -38,5 +36,4 @@ vim.keymap.set("n", "]d", function()
 	vim.diagnostic.goto_next()
 end, opts)
 
-vim.keymap.set("n", "<leader>q", "<nop>", { desc = "quit" })
 vim.keymap.set("n", "<leader>qq", ":qa<cr>", { desc = "Quit nvim" })
