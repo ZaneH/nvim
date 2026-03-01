@@ -150,7 +150,6 @@ require("lazy").setup({
 	-- Misc
 	{
 		"kawre/leetcode.nvim",
-		lazy = leet_arg ~= vim.fn.argv()[1],
 		lang = "cpp",
 		build = ":TSUpdate html",
 		dependencies = {
