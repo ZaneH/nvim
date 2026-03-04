@@ -37,3 +37,6 @@ vim.keymap.set("n", "]d", function()
 end, opts)
 
 vim.keymap.set("n", "<leader>qq", ":qa<cr>", { desc = "Quit nvim" })
+
+-- LeetCode
+vim.keymap.set("n", "<leader>Lr", ":Leet run<cr>", { desc = "Run" })
