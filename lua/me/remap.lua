@@ -40,3 +40,4 @@ vim.keymap.set("n", "<leader>qq", ":qa<cr>", { desc = "Quit nvim" })
 
 -- LeetCode
 vim.keymap.set("n", "<leader>Lr", ":Leet run<cr>", { desc = "Run" })
+vim.keymap.set("n", "<leader>Lc", ":Leet console<cr>", { desc = "Console" })
