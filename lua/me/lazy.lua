@@ -68,7 +68,12 @@ require("lazy").setup({
 	{ "kylechui/nvim-surround" },
 	{ "numToStr/Comment.nvim" },
 	{ "folke/zen-mode.nvim" },
-	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+	{
+		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
+		lazy = false,
+		build = ":TSUpdate",
+	},
 	{ "nvim-mini/mini.nvim" },
 	{ "kristijanhusak/vim-dadbod-ui", dependencies = { "tpope/vim-dadbod", "kristijanhusak/vim-dadbod-completion" } },
 	{ "jake-stewart/multicursor.nvim", branch = "1.0" },
