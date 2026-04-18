@@ -19,14 +19,22 @@ vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
 vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
 
 -- Window management
-vim.keymap.set("n", "<leader>ws", "<C-w>s", { desc = "Split below" })
-vim.keymap.set("n", "<leader>wv", "<C-w>v", { desc = "Split right" })
-vim.keymap.set("n", "<leader>wd", "<C-w>c", { desc = "Close window" })
+vim.keymap.set("n", "<leader>w/", "<C-w>v", { desc = "Split right" })
+vim.keymap.set("n", "<leader>w-", "<C-w>s", { desc = "Split below" })
+vim.keymap.set("n", "<leader>wx", "<C-w>c", { desc = "Close window" })
+vim.keymap.set("n", "<leader>wo", "<C-w>o", { desc = "Close others" })
+vim.keymap.set("n", "<leader>ww", "<C-w>w", { desc = "Cycle windows" })
 vim.keymap.set("n", "<leader>w=", "<C-w>=", { desc = "Balance windows" })
+vim.keymap.set("n", "<leader>wr", "<C-w>r", { desc = "Rotate windows" })
 
 -- File management
 vim.keymap.set("n", "<leader>fs", ":w<cr>", { desc = "Save file" })
 vim.keymap.set("n", "<leader>fS", ":wa<cr>", { desc = "Save all" })
+
+-- Toggles
+vim.keymap.set("n", "<leader>tr", function()
+	vim.bo.readonly = not vim.bo.readonly
+end, { desc = "Toggle readonly" })
 
 -- Show diagnostics
 vim.keymap.set("n", "[d", function()
